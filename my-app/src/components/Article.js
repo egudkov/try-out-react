@@ -1,14 +1,6 @@
 import React, { Component } from 'react'
 
 class Article extends Component {
-    /*     constructor(props) {
-            super(props)
-    
-            this.state = {
-                isOpen: true
-            }
-        }
-     */
     state = {
         isOpen: true
     }
@@ -20,7 +12,9 @@ class Article extends Component {
             <div>
                 <h2>
                     {article.title}
-                    <button onClick={handleClick}>close</button>
+                    <button onClick={this.handleClick}>
+                        {this.state.isOpen ? 'close' : 'open'}
+                    </button>
                 </h2>
                 {body}
                 <h3>
@@ -29,11 +23,13 @@ class Article extends Component {
             </div>
         )
     }
-}
 
-function handleClick() {
-    console.log('---', 'clicked');
-
+    handleClick = () => {
+        console.log('---', 'clicked')
+        this.setState({
+            isOpen: !this.state.isOpen
+        })
+    }
 }
 
 export default Article
